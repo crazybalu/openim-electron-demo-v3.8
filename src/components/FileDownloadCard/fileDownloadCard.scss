@@ -1,0 +1,13 @@
+/* FileDownloadCard.css */
+.fileinfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filename {
+  font-weight: bold;
+}
+
+.filesize {
+  color: #999;
+}

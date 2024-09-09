@@ -8,7 +8,9 @@ import { memo, ReactNode, useCallback, useState } from "react";
 import React from "react";
 
 import { message as antdMessage } from "@/AntdGlobalComp";
+import card from "@/assets/images/chatFooter/card.png";
 import emoji from "@/assets/images/chatFooter/emoji.png";
+import file from "@/assets/images/chatFooter/file.png";
 import image from "@/assets/images/chatFooter/image.png";
 import rtc from "@/assets/images/chatFooter/rtc.png";
 import video from "@/assets/images/chatFooter/video.png";
@@ -51,6 +53,22 @@ const sendActionList = [
     comp: <CallPopContent />,
     placement: "top",
   },
+  {
+    title: t("placeholder.file"),
+    icon: file,
+    key: "file",
+    accept: "*",
+    comp: null,
+    placement: "top",
+  },
+  {
+    title: t("placeholder.card"),
+    icon: card,
+    key: "card",
+    accept: undefined,
+    comp: null,
+    placement: "top",
+  },
 ];
 
 i18n.on("languageChanged", () => {
@@ -58,6 +76,8 @@ i18n.on("languageChanged", () => {
   sendActionList[1].title = t("placeholder.image");
   sendActionList[2].title = t("placeholder.video");
   sendActionList[3].title = t("placeholder.call");
+  sendActionList[4].title = t("placeholder.file");
+  sendActionList[5].title = t("placeholder.card");
 });
 
 const SendActionBar = ({
@@ -104,7 +124,7 @@ const SendActionBar = ({
             }),
           title: null,
           arrow: false,
-          trigger: "click",
+          // trigger: "click",
           // @ts-ignore
           open: action.key ? visibleState[action.key] : false,
           onOpenChange: (visible) =>

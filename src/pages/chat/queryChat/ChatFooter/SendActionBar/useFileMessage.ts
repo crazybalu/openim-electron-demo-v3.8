@@ -52,15 +52,30 @@ export function useFileMessage() {
     return (await IMSDK.createVideoMessageByFile(options)).data;
   };
 
+  const getFileMessage = async (file: FileWithPath) => {
+    const options = {
+      file: file,
+      filePath: "",
+      fileName: file.name,
+      uuid: uuidV4(),
+      sourceUrl: "",
+      fileSize: file.size,
+      fileType: file.type,
+    };
+    return (await IMSDK.createFileMessageByFile(options)).data;
+  };
+
   const createImageOrVideoMessage = async (
     file: FileWithPath,
   ): Promise<MessageItem> => {
-    const isImage = file.type.includes("image");
-    if (isImage) {
+    //const isImage = file.type.includes("image");
+    if (file.type.includes("image")) {
       return await getImageMessage(file);
+    } else if (file.type.includes("video")) {
+      const snapShotFile = await getVideoSnshotFile(file);
+      return await getVideoMessage(file, snapShotFile);
     }
-    const snapShotFile = await getVideoSnshotFile(file);
-    return await getVideoMessage(file, snapShotFile);
+    return await getFileMessage(file);
   };
 
   const getPicInfo = (file: File): Promise<HTMLImageElement> =>

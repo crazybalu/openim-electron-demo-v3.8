@@ -8,7 +8,7 @@ import { EmojiData } from "@/components/CKEditor";
 import { parseTwemoji } from "@/components/Twemoji";
 
 const emojiPicker = new Picker({
-  emojiVersion: 14,
+  emojiVersion: 15,
   dataSource: `${window.electronAPI?.getDataPath("public") ?? ""}/emojis.json`,
 });
 emojiPicker.className = "light w-full h-full";

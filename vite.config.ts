@@ -62,7 +62,7 @@ export default defineConfig(({ command }) => {
       : undefined,
     clearScreen: false,
     build: {
-      sourcemap: false,
+      sourcemap: true,
       cssCodeSplit: true,
       chunkSizeWarningLimit: 500,
       terserOptions: {
